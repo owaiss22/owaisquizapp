@@ -3,7 +3,7 @@ import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 
 export default class Register extends React.Component {
     render() {
-        const { login } = this.props;
+        const { login, dash } = this.props;
         return(
             <React.Fragment>
                  <Container>
@@ -40,7 +40,7 @@ export default class Register extends React.Component {
                                     />
                                 </Form.Group>
                             </Form>
-                            <Button /*onClick={this.userRegister}*/ style={{ width: '100%' }} variant="dark" type="submit">Register</Button>
+                            <Button onClick={dash} style={{ width: '100%' }} variant="dark" type="submit">Register</Button>
                             <br /><br />
                             {/* fontAwesome se Back Button lagana h arrrow type */}
                             <Button onClick={login} style={{ width: '100%' }} variant="dark" type="submit">Back To Login</Button>

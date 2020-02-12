@@ -3,6 +3,7 @@ import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 
 export default class Login extends React.Component {
     render() {
+        const { dash } = this.props;
         return(
             <React.Fragment>
                 <Container>
@@ -30,7 +31,7 @@ export default class Login extends React.Component {
                                     />
                                 </Form.Group>
                             </Form>
-                            <Button /*onClick={this.login}*/ style={{width:'100%',fontSize:'20px'}} variant="dark" type="submit">Login</Button>
+                            <Button onClick={dash} style={{width:'100%',fontSize:'20px'}} variant="dark" type="submit">Login</Button>
                         </Col>
                     </Row>
                 </Container>
