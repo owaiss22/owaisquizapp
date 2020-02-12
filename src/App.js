@@ -64,7 +64,7 @@ class App extends React.Component{
         showDashboard && <Dashboard panel={this.renderQuizPanel}/>
       }
       {
-        showQuizPanel && <QuizPanel/>
+        showQuizPanel && <QuizPanel dash={this.renderDashboard}/>
       }
       </React.Fragment>
     )
