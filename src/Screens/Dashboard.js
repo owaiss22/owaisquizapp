@@ -3,6 +3,7 @@ import { Card, Container, Row, Col, Button } from 'react-bootstrap';
 
 export default class Dash extends React.Component {
     render() {
+        const { panel } = this.props;
         return (
             <React.Fragment>
                 <Container>
@@ -28,7 +29,7 @@ export default class Dash extends React.Component {
                                     <Card.Title>You may not joined for any course</Card.Title>
                                     <div>
                                    <Card.Title>HTML
-                                   <Button style={{float:'right'}} variant="dark" type="submit">Start</Button>
+                                   <Button style={{float:'right'}} onClick={panel} variant="dark" type="submit">Start</Button>
                                    </Card.Title>
                                    </div>
                                    <br/>

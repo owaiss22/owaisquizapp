@@ -3,12 +3,14 @@ import Navbar from './Components/Navbar';
 import Login from './Screens/Login';
 import Register from './Screens/Registeration';
 import Dashboard from './Screens/Dashboard';
+import QuizPanel from './Screens/QuizPanel';
 
 class App extends React.Component{
   state = {
     showLogin: true,
     showRegister: false, 
     showDashboard: false,
+    showQuizPanel: false,
   }
 
   renderLogin = () => {
@@ -16,6 +18,7 @@ class App extends React.Component{
       showLogin: true,
       showRegister: false,
       showDashboard: false,
+      showQuizPanel: false,
     })
   }
 
@@ -24,6 +27,7 @@ class App extends React.Component{
       showRegister: true,
       showLogin: false,
       showDashboard: false,
+      showQuizPanel: false,
     })
   }
 
@@ -32,11 +36,21 @@ class App extends React.Component{
       showDashboard: true,
       showRegister: false,
       showLogin: false,
+      showQuizPanel: false,
+    })
+  }
+
+  renderQuizPanel = () => {
+    this.setState({
+      showQuizPanel: true,
+      showDashboard: false,
+      showRegister: false,
+      showLogin: false,
     })
   }
   
   render() {
-    const { showLogin, showRegister, showDashboard } = this.state;
+    const { showLogin, showRegister, showDashboard, showQuizPanel } = this.state;
     return(
       <React.Fragment>
         <Navbar register={this.renderRegister}/>
@@ -47,7 +61,10 @@ class App extends React.Component{
         showRegister && <Register login={this.renderLogin} dash={this.renderDashboard}/>
       }
       {
-        showDashboard && <Dashboard/>
+        showDashboard && <Dashboard panel={this.renderQuizPanel}/>
+      }
+      {
+        showQuizPanel && <QuizPanel/>
       }
       </React.Fragment>
     )
