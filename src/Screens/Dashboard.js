@@ -26,6 +26,23 @@ export default class Dash extends React.Component {
                                 <Card.Header>Joined Courses</Card.Header>
                                 <Card.Body style={{ backgroundColor: 'white', color: 'black' }}>
                                     <Card.Title>You may not joined for any course</Card.Title>
+                                    <div>
+                                   <Card.Title>HTML
+                                   <Button style={{float:'right'}} variant="dark" type="submit">Start</Button>
+                                   </Card.Title>
+                                   </div>
+                                   <br/>
+                                   <div>
+                                   <Card.Title>CSS
+                                   <Button style={{float:'right'}} variant="dark" type="submit">Start</Button>
+                                   </Card.Title>
+                                   </div>
+                                   <br/>
+                                   <div>
+                                   <Card.Title>JavaScript
+                                   <Button style={{float:'right'}} variant="dark" type="submit">Start</Button>
+                                   </Card.Title>
+                                   </div>
                                 </Card.Body>
                             </Card>
                         </Col>
