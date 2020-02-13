@@ -4,6 +4,8 @@ import Login from './Screens/Login';
 import Register from './Screens/Registeration';
 import Dashboard from './Screens/Dashboard';
 import QuizPanel from './Screens/QuizPanel';
+import Prokey from './Screens/ProductKey';
+import QuizScreen from './Screens/QuizScreen';
 
 class App extends React.Component{
   state = {
@@ -11,6 +13,8 @@ class App extends React.Component{
     showRegister: false, 
     showDashboard: false,
     showQuizPanel: false,
+    showProkey: false,
+    showQuizScreen: false,
   }
 
   renderLogin = () => {
@@ -19,6 +23,8 @@ class App extends React.Component{
       showRegister: false,
       showDashboard: false,
       showQuizPanel: false,
+      showProkey: false,
+      showQuizScreen: false,
     })
   }
 
@@ -28,6 +34,8 @@ class App extends React.Component{
       showLogin: false,
       showDashboard: false,
       showQuizPanel: false,
+      showProkey: false,
+      showQuizScreen: false,
     })
   }
 
@@ -37,6 +45,8 @@ class App extends React.Component{
       showRegister: false,
       showLogin: false,
       showQuizPanel: false,
+      showProkey: false,
+      showQuizScreen: false,
     })
   }
 
@@ -46,11 +56,35 @@ class App extends React.Component{
       showDashboard: false,
       showRegister: false,
       showLogin: false,
+      showProkey: false,
+      showQuizScreen: false,
+    })
+  }
+
+  renderProkey = () => {
+    this.setState({
+      showProkey: true,
+      showQuizPanel: false,
+      showDashboard: false,
+      showRegister: false,
+      showLogin: false,
+      showQuizScreen: false,
+    })
+  }
+
+  renderQuizScreen = () => {
+    this.setState({
+      showQuizScreen: true,
+      showProkey: false,
+      showQuizPanel: false,
+      showDashboard: false,
+      showRegister: false,
+      showLogin: false,
     })
   }
   
   render() {
-    const { showLogin, showRegister, showDashboard, showQuizPanel } = this.state;
+    const { showLogin, showRegister, showDashboard, showQuizPanel, showProkey, showQuizScreen } = this.state;
     return(
       <React.Fragment>
         <Navbar register={this.renderRegister}/>
@@ -64,7 +98,13 @@ class App extends React.Component{
         showDashboard && <Dashboard panel={this.renderQuizPanel}/>
       }
       {
-        showQuizPanel && <QuizPanel dash={this.renderDashboard}/>
+        showQuizPanel && <QuizPanel dash={this.renderDashboard} pk={this.renderProkey}/>
+      }
+      {
+        showProkey && <Prokey panel={this.renderQuizPanel} Qscreen={this.renderQuizScreen}/>
+      }
+      {
+        showQuizScreen && <QuizScreen/>
       }
       </React.Fragment>
     )

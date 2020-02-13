@@ -4,7 +4,7 @@ import { Card, Button, Container, Row, Col, ListGroup, ListGroupItem } from 'rea
 export default class Quizpanel extends React.Component {
 
     render() {
-        const { dash } = this.props;
+        const { dash, pk } = this.props;
         return (
             <React.Fragment>
                 <Button style={{ margin: '20px' }} onClick={dash} variant="dark">Back</Button>
@@ -35,7 +35,7 @@ export default class Quizpanel extends React.Component {
                                    
                                     <h6>Total Questions: 3</h6>
                                     <br/>
-                                    <Button variant="dark" type="submit">Continue</Button>
+                                    <Button onClick={pk} variant="dark" type="submit">Continue</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
