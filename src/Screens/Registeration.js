@@ -1,7 +1,48 @@
 import React from 'react';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
+import swal from 'sweetalert';
+import firebase from '../Config/Firebase';
 
 export default class Register extends React.Component {
+
+    state = {
+        username: null,
+        email: null,
+        password: null,
+    }
+
+    userRegister = () => {
+        const { username, email, password } = this.state;
+        const { dash } = this.props;
+
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                //userCreated
+                swal("user registered successfully");
+
+                const userID = firebase.auth().currentUser.uid;
+                const dbRef = firebase.database().ref().child("Users").child(userID);
+                dbRef.set({
+                    Full_Name: username,
+                    Email: email,
+                })
+                dash();
+            })
+
+            .catch((error) => {
+                // Handle Errors here.
+
+                var errorMessage = error.message;
+                console.log(errorMessage)
+            })
+    }
+
+    handleTextFields = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value,
+        })
+
+    }
     render() {
         const { login, dash } = this.props;
         return(
@@ -20,7 +61,7 @@ export default class Register extends React.Component {
                                         type="text"
                                         placeholder="Enter Your Name"
                                         name="username"
-                                        // onChange={this.handleTextFields}
+                                        onChange={this.handleTextFields}
                                     />
                                 </Form.Group>
                                 <Form.Group controlId="formBasicEmail">
@@ -28,7 +69,7 @@ export default class Register extends React.Component {
                                         type="email"
                                         placeholder="Email Address"
                                         name="email"
-                                        // onChange={this.handleTextFields}
+                                        onChange={this.handleTextFields}
                                     />
                                 </Form.Group>
                                 <Form.Group controlId="formBasicPassword">
@@ -36,11 +77,11 @@ export default class Register extends React.Component {
                                         type="password"
                                         placeholder="Enter Password"
                                         name="password"
-                                        // onChange={this.handleTextFields}
+                                        onChange={this.handleTextFields}
                                     />
                                 </Form.Group>
                             </Form>
-                            <Button onClick={dash} style={{ width: '100%' }} variant="dark" type="submit">Register</Button>
+                            <Button onClick={this.userRegister} style={{ width: '100%' }} variant="dark" type="submit">Register</Button>
                             <br /><br />
                             {/* fontAwesome se Back Button lagana h arrrow type */}
                             <Button onClick={login} style={{ width: '100%' }} variant="dark" type="submit">Back To Login</Button>

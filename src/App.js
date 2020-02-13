@@ -87,7 +87,7 @@ class App extends React.Component{
     const { showLogin, showRegister, showDashboard, showQuizPanel, showProkey, showQuizScreen } = this.state;
     return(
       <React.Fragment>
-        <Navbar register={this.renderRegister}/>
+        <Navbar register={this.renderRegister} login={this.renderLogin}/>
       {
         showLogin && <Login dash={this.renderDashboard}/>
       }
