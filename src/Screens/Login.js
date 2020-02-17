@@ -3,6 +3,8 @@ import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import swal from 'sweetalert';
 import firebase from '../Config/Firebase';
 
+import { Link } from 'react-router-dom';
+
 export default class Login extends React.Component {
 
     state = {
@@ -12,11 +14,11 @@ export default class Login extends React.Component {
 
     login = () => {
         const { email, password } = this.state;
-        const { dash } = this.props;
+        const { history } = this.props;
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(() => {
                 // swal("Welcome to Dashboard");
-                dash();
+                history.push('/dashboard');
 
             })
             .catch(error => {
@@ -60,6 +62,7 @@ export default class Login extends React.Component {
                                 </Form.Group>
                             </Form>
                             <Button onClick={this.login} style={{width:'100%',fontSize:'20px'}} variant="dark" type="submit">Login</Button>
+                            <Link to='/register' >Create Account</Link>
                         </Col>
                     </Row>
                 </Container>

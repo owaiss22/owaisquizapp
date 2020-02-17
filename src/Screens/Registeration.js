@@ -1,6 +1,9 @@
 import React from 'react';
-import {Container, Row, Col, Form, Button} from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import swal from 'sweetalert';
+
+// sweetsalert2
+
 import firebase from '../Config/Firebase';
 
 export default class Register extends React.Component {
@@ -20,15 +23,29 @@ export default class Register extends React.Component {
                 //userCreated
                 swal("user registered successfully");
 
-                const userID = firebase.auth().currentUser.uid;
-                const dbRef = firebase.database().ref().child("Users").child(userID);
-                dbRef.set({
-                    Full_Name: username,
-                    Email: email,
-                })
-                dash();
-            })
+                firebase.auth().onAuthStateChanged((user) => {
 
+                    if (user) {
+                        const userID = firebase.auth().currentUser.uid;
+                        const dbRef = firebase.database().ref().child("Users").child(userID);
+                        dbRef.set({
+                            Full_Name: username,
+                            Email: email,
+                            Courses: {
+                                Available_Courses: [
+                                    'HTML',
+                                    'CSS',
+                                    'JavaScript'
+                                ],
+                                // Joined_Courses: [
+                                //     'You may not joined for any course'
+                                // ],
+                            }
+                        })
+                        this.props.history.push('/dashboard')
+                    }
+                })
+            })
             .catch((error) => {
                 // Handle Errors here.
 
@@ -45,9 +62,9 @@ export default class Register extends React.Component {
     }
     render() {
         const { login, dash } = this.props;
-        return(
+        return (
             <React.Fragment>
-                 <Container>
+                <Container>
                     <Row>
                         <Col sm={4}></Col>
                         <Col sm={4}>
